@@ -1,0 +1,35 @@
+[project]
+name = "fixed-income"
+version = "0.1.0"
+authors = [
+  { name="Siddharth Kulkarni" },
+]
+description = "Python library for analysis of fixed income instruments."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    'Intended Audience :: Science/Research',
+    'Intended Audience :: Developers',
+    'Programming Language :: C',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Topic :: Scientific/Engineering',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Operating System :: Unix',
+    'Operating System :: MacOS',
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[tool.setuptools]
+packages = ["fixed_income"]  # List all top-level packages
+
+[project.urls]
+Homepage = "https://github.com/siddharthskulkarni/fixed-income"
+Issues = "https://github.com/siddharthskulkarni/fixed-income/issues"
