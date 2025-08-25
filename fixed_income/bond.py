@@ -1,7 +1,7 @@
 import numpy as np
 import scipy as sp
 
-class Bond:
+class Bond():
     def __init__(self, C, F, T, P):
         """
         Initialize a bond with its parameters.
@@ -60,7 +60,6 @@ class Bond:
         float: The YTM of the bond.
         """
         _ytm = sp.optimize.newton(lambda r: self.f(r) - self.P, 0)
-        print(_ytm)
         return _ytm
 
     def __repr__(self):
