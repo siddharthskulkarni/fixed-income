@@ -1,6 +1,10 @@
 __all__ = [
     "Bond",
     "NelsonSiegel",
+    "NelsonSiegelSvensson",
+    "HullWhite",
+    "HullWhiteCalibrationResult",
+    "DiscountCurve",
     "USTreasurySpotCurve",
     "CachedDataSource",
     "CmeSofrSettleBundleSource",
@@ -19,6 +23,9 @@ __all__ = [
     "RateSeries",
     "SofrFuturesSettleBundle",
     "TreasuryParCurveSource",
+    "bootstrap_ois_from_sofr",
+    "bootstrap_spot_curve",
+    "forward_rate_from_discount",
     "create_dash_app",
     "create_jupyter_dash_app",
     "yield_curve_figure",
@@ -26,7 +33,7 @@ __all__ = [
     "bond_price_yield_figure",
 ]
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 from fixed_income.bond import Bond
 from fixed_income.data import (
@@ -48,7 +55,18 @@ from fixed_income.data import (
     SofrFuturesSettleBundle,
     TreasuryParCurveSource,
 )
-from fixed_income.rates import NelsonSiegel, USTreasurySpotCurve
+from fixed_income.rates import (
+    DiscountCurve,
+    HullWhite,
+    HullWhiteCalibrationResult,
+    NelsonSiegel,
+    NelsonSiegelSvensson,
+    USTreasurySpotCurve,
+    bootstrap_ois_from_sofr,
+    bootstrap_spot_curve,
+    forward_rate_from_discount,
+)
+from fixed_income.risk import macaulay, modified
 from fixed_income.viz import (
     bond_cashflow_figure,
     bond_price_yield_figure,

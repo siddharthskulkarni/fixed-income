@@ -7,7 +7,7 @@ import numpy as np
 
 from fixed_income.bond import Bond
 from fixed_income.data import CurvePoint, DataSource, ParCurve, TreasuryParCurveSource
-from fixed_income.rates import NelsonSiegel
+from fixed_income.rates import NelsonSiegel, NelsonSiegelSvensson
 
 
 def _require_plotly() -> Any:
@@ -80,6 +80,7 @@ def _empty_figure(title: str) -> Any:
 def yield_curve_figure(
     par_curve: ParCurve,
     show_nelson_siegel: bool = True,
+    show_nelson_siegel_svensson: bool = False,
     ns_tau: float = 1.0,
     ns_points: int = 200,
 ) -> Any:
@@ -114,6 +115,22 @@ def yield_curve_figure(
                 mode="lines",
                 name="Nelson-Siegel fit",
                 line=dict(dash="dash"),
+                hovertemplate="%{x:.2f} yr: %{y:.2%}<extra></extra>",
+            )
+        )
+
+    if show_nelson_siegel_svensson and maturities.size >= 4:
+        nss = NelsonSiegelSvensson(t=maturities, r=yields)
+        nss.fit()
+        x_fit = np.linspace(np.min(maturities), np.max(maturities), ns_points)
+        y_nss = nss.f(x_fit)
+        fig.add_trace(
+            go.Scatter(
+                x=x_fit,
+                y=y_nss,
+                mode="lines",
+                name="Nelson-Siegel-Svensson fit",
+                line=dict(dash="dot"),
                 hovertemplate="%{x:.2f} yr: %{y:.2%}<extra></extra>",
             )
         )
@@ -223,7 +240,10 @@ def create_dash_app(
                             html.Br(),
                             dcc.Checklist(
                                 id="show-ns-fit",
-                                options=[{"label": "Show Nelson-Siegel fit", "value": "ns"}],
+                                options=[
+                                    {"label": "Nelson-Siegel fit", "value": "ns"},
+                                    {"label": "Nelson-Siegel-Svensson fit", "value": "nss"},
+                                ],
                                 value=["ns"],
                             ),
                             html.Div(id="dashboard-status", style={"marginTop": "1rem", "color": "#d62828"}),
@@ -278,6 +298,7 @@ def create_dash_app(
             curve_fig = yield_curve_figure(
                 par_curve=curve,
                 show_nelson_siegel="ns" in (show_ns_values or []),
+                show_nelson_siegel_svensson="nss" in (show_ns_values or []),
             )
         except Exception as exc:
             status_parts.append(f"Curve load failed: {exc}")

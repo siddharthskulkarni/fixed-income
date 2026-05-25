@@ -75,6 +75,22 @@ print(bundle.sr3.settles[0])  # front contract SR3 strip
 
 To add another date, paste new strips and use a matching `trade_date` / `as_of`.
 
+## SOFR OIS bootstrap and Hull–White
+
+After loading SOFR history, build an OIS discount curve and calibrate Hull–White to futures:
+
+```python
+from datetime import date
+from fixed_income.data import NyFedSofrSource, CmeSofrSettleBundleSource
+from fixed_income.rates import bootstrap_ois_from_sofr, HullWhite
+
+as_of = date(2026, 5, 22)
+sofr = NyFedSofrSource().fetch(as_of=as_of)
+ois = bootstrap_ois_from_sofr(sofr, pillars=[0.25, 0.5, 1.0, 2.0])
+bundle = CmeSofrSettleBundleSource(trade_date=as_of).fetch(as_of=as_of)
+cal = HullWhite.calibrate_to_futures(bundle.sr3, ois)
+```
+
 ## Ingest script
 
 ```bash
