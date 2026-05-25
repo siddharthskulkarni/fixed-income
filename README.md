@@ -92,6 +92,11 @@ print(f"HW a={cal.a:.4f}, sigma={cal.sigma:.4f}, RMSE={cal.rmse:.4f}")
 python3 scripts/ingest_market_data.py --as-of 2026-05-22
 ```
 
+## Examples
+
+- [`examples/rates_models.ipynb`](examples/rates_models.ipynb) — Treasury par, NS/NSS fits, spot bootstrap, SOFR OIS, Hull–White calibration
+- [`examples/bonds.ipynb`](examples/bonds.ipynb) — Bond price/yield, duration, convexity
+
 ## Dash dashboard
 
 ```bash
