@@ -1,0 +1,14 @@
+{
+  "refRates": [
+    {
+      "effectiveDate": "2026-05-21",
+      "type": "SOFR",
+      "percentRate": 3.51
+    },
+    {
+      "effectiveDate": "2026-05-20",
+      "type": "SOFR",
+      "percentRate": 3.5
+    }
+  ]
+}

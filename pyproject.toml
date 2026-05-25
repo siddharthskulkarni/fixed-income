@@ -1,12 +1,20 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
 [project]
 name = "fixed-income"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   { name="Siddharth Kulkarni" },
 ]
 description = "Python library for analysis of fixed income instruments."
 readme = "README.md"
 requires-python = ">=3.9"
+dependencies = [
+  "numpy>=1.23",
+  "scipy>=1.10",
+]
 classifiers = [
     'Intended Audience :: Science/Research',
     'Intended Audience :: Developers',
@@ -27,9 +35,41 @@ classifiers = [
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
-[tool.setuptools]
-packages = ["fixed_income"]  # List all top-level packages
+[project.optional-dependencies]
+data = [
+  "pandas>=2.0",
+  "python-dotenv>=1.0",
+  "requests>=2.31",
+]
+viz = [
+  "pandas>=2.0",
+  "matplotlib>=3.8",
+  "seaborn>=0.13",
+  "ipykernel>=6.0",
+  "plotly>=5.0",
+  "dash>=2.0",
+  "jupyter-dash>=0.4",
+]
+dev = [
+  "build>=1.2",
+  "pytest>=7.0",
+  "ruff>=0.4",
+  "twine>=5.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/siddharthskulkarni/fixed-income"
 Issues = "https://github.com/siddharthskulkarni/fixed-income/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["fixed_income"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

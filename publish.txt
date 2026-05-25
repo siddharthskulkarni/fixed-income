@@ -1,0 +1,6 @@
+# 1) bump version in `pyproject.toml`
+# 2) run production build + sanity checks
+./scripts/build_prod.sh
+
+# 3) upload to PyPI (tokens in `.pypirc`)
+python3 -m twine upload -r pypi dist/* --verbose
