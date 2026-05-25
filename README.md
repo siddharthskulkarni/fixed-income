@@ -1,6 +1,6 @@
 # fixed-income
 
-Python library for **interest-rate and fixed-income analytics**, developed as part of UMass work on interest-rate derivatives pricing: Treasury and SOFR curves, parametric yield fits, a one-factor Hull–White short-rate model with SOFR futures convexity, and classical bond risk metrics.
+Python library for **interest-rate and fixed-income analytics**, developed as part of work on interest-rate derivatives pricing: Treasury and SOFR curves, parametric yield fits, a one-factor Hull–White short-rate model with SOFR futures convexity, and classical bond risk metrics.
 
 ## Capabilities
 
